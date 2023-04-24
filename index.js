@@ -95,7 +95,7 @@ var root = {
   restaurant: (arg) => restaurants.find( r => r.id === arg.id),
   restaurants: () => restaurants,
   setrestaurant: ({ input }) => {
-    restaurants.push( {email:input.email, description:input.description} );
+    restaurants.push( {name:input.name, description:input.description} );
     return input;
   },
   deleterestaurant: ({ id }) => {
@@ -111,15 +111,19 @@ var root = {
     return {ok};
   },
   editrestaurant: ({ id, ...restaurant }) => {
-    const subject = restaurants.find( r => r.id === id );
-    if(!restaurant) {
+    let subject = restaurants.find( r => r.id === id );
+    if(!subject) {
       throw new Error("Contact doesn't exist.");
     }
     subject = {
       ...subject, ...restaurant
     }
+    return subject;
   },
 };
+
+
+
 var app = express();
 app.use(
   "/graphql",
