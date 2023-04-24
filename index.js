@@ -112,12 +112,14 @@ var root = {
   },
   editrestaurant: ({ id, ...restaurant }) => {
     let subject = restaurants.find( r => r.id === id );
+    let subjectInd = restaurants.indexOf( subject );
     if(!subject) {
       throw new Error("Contact doesn't exist.");
     }
     subject = {
       ...subject, ...restaurant
     }
+    restaurants[ subjectInd ] = subject;
     return subject;
   },
 };
