@@ -102,7 +102,7 @@ var root = {
     const rest = restaurants.find( r => r.id === id );
     const ok = Boolean(rest);
     if( ok ) {
-      restaurants.filter( r => r.id !== id );
+      restaurants = restaurants.filter( r => r.id !== id );
       console.log('DELETED: ', rest);
     }
     else {
